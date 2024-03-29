@@ -1,0 +1,15 @@
+class Solution(object):
+  def fourSumCount(self,nums1, nums2, nums3, nums4):
+    count_dict = {}
+    for a in nums1:
+        for b in nums2:
+            sum_ab = a + b
+            count_dict[sum_ab] = count_dict.get(sum_ab, 0) + 1
+
+    total_count = 0
+    for c in nums3:
+        for d in nums4:
+            sum_cd = -(c + d)
+            total_count += count_dict.get(sum_cd, 0)
+
+    return total_count
