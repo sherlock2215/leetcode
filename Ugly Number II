@@ -1,0 +1,19 @@
+class Solution(object):
+    def nthUglyNumber(self, n):
+        ugly = [1]  # Initialize the list of ugly numbers with the first one
+        i2, i3, i5 = 0, 0, 0  # Pointers for the next multiples of 2, 3, and 5
+
+        while len(ugly) < n:
+            # Calculate the next ugly number by selecting the smallest among the next multiples of 2, 3, and 5
+            next_ugly = min(ugly[i2] * 2, ugly[i3] * 3, ugly[i5] * 5)
+            ugly.append(next_ugly)
+
+            # Move the corresponding pointer to the next multiple if the number is used
+            if next_ugly == ugly[i2] * 2:
+                i2 += 1
+            if next_ugly == ugly[i3] * 3:
+                i3 += 1
+            if next_ugly == ugly[i5] * 5:
+                i5 += 1
+
+        return ugly[-1]
